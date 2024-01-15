@@ -2,8 +2,9 @@ const express=require('express')
 const router=express.Router()
 const pgConnection=require('../src/base/pgconnection')
 
-router.get('/',(req,res)=>{
-    res.send("PostgresSQL Started")
+router.get('/students',async(req,res)=>{
+const result=await pgConnection('SELECT * FROM students')
+res.send(result)
 })
 
 // insert students Data
