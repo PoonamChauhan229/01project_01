@@ -6,6 +6,8 @@ const studentRouter=require('./routes/studentsRoutes')
 app.use(express.json())
 app.use(studentRouter)
 
+const admissionRouter=require('./routes/admissionRoutes')
+app.use(admissionRouter)
 // const pgConnection=require('./src/base/pgconnection')
 
 // pgConnection('Select * from students where student_grade =$1',['B'])
