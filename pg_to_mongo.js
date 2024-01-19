@@ -1,6 +1,7 @@
 const pg_connection=require('./src/base/pg_connection')
 const mongo_connection=require('./src/base/mongo_connection')
 
+
 const pg_to_mongo=async()=>{
     const result=await pg_connection('SELECT * FROM students')
     console.log(result)
