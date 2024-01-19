@@ -27,3 +27,16 @@ DROP table students
 
 
 DELETE from students where student_id=7
+
+CREATE TABLE IF NOT EXISTS admission (
+	admission_id SERIAL PRIMARY KEY,
+	admission_class VARCHAR(100),
+	admission_date DATE,admission_fees INT,
+	student_id INT REFERENCES students(student_id)
+)
+
+select * from admission
+
+select * from students s, admission a where s.student_id =a.student_id
+
+select * from admission where student_id=1 

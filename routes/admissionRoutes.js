@@ -1,24 +1,8 @@
 const express=require('express')
 const router=express.Router()
-const createAdmissionTable =require('../src/admission/createAdmissionTable')
 
-// createAdmissionTable()
-let tableCreated=false;
 
-const tablecreatedOnce=async()=>{
-    try{
-        if(!tableCreated){
-            await createAdmissionTable();
-            tableCreated=true
-            console.log("Table Created")
-        }else{
-            console.log("Table has been created")
-        }
-    }catch(e){
-        console.log("Admission TableCreated val",tableCreated+" So, no table should be created")
-    }
-}
-tablecreatedOnce();
+
 
 // Insert admission
 
@@ -42,6 +26,13 @@ router.get('/admissions',(req,res)=>{
 router.put('/updateadmission/:id',(req,res)=>{
     const updateAdmission=require('../src/admission/update_admission')
     updateAdmission(req,res)
+})
+
+// getdetailed admission list
+
+router.get('/getdetailedadmissionlist',(req,res)=>{
+    const get_detail_admission_list=require('../src/admission/get_detail_admission_list')
+    get_detail_admission_list(req,res)
 })
 
 module.exports=router;

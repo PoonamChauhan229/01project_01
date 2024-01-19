@@ -1,11 +1,11 @@
-const pgConnection=require('../base/pgconnection')
+const pg_connection=require('../base/pg_connection')
 
-const updateStudents=async(req,res)=>{
+const update_student=async(req,res)=>{
     try{
         const {id}=req.params
         // console.log(id)
     
-        const selectQuery=await pgConnection('SELECT * from students WHERE student_id= $1',[id])
+        const selectQuery=await pg_connection('SELECT * from students WHERE student_id= $1',[id])
         // console.log(selectQuery[0])
     
         let tempvar=selectQuery[0]
@@ -20,11 +20,11 @@ const updateStudents=async(req,res)=>{
     
     
         
-        await pgConnection(`UPDATE students SET student_name=$1,student_email=$2,student_contact=$3,student_class=$4,student_attendance=$5,student_grade=$6 WHERE student_id =$7`,[tempvar.student_name, tempvar.student_email,tempvar.student_contact,tempvar.student_class,tempvar.student_attendance,tempvar.student_grade,id])
+        await pg_connection(`UPDATE students SET student_name=$1,student_email=$2,student_contact=$3,student_class=$4,student_attendance=$5,student_grade=$6 WHERE student_id =$7`,[tempvar.student_name, tempvar.student_email,tempvar.student_contact,tempvar.student_class,tempvar.student_attendance,tempvar.student_grade,id])
         // console.log(result)
         res.send({"message":"Updated Successfully","data":tempvar})}
         catch(e){
-            res.send("Couldnt find the data entered")
+          console.log("Some internal error")
         }
 }
-module.exports=updateStudents
+module.exports=update_student

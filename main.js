@@ -1,4 +1,6 @@
 const express = require('express')
+const dotenv=require('dotenv').config()
+
 const app = express()
 const port = 3000
 
@@ -8,18 +10,21 @@ app.use(studentRouter)
 
 const admissionRouter=require('./routes/admissionRoutes')
 app.use(admissionRouter)
-// const pgConnection=require('./src/base/pgconnection')
+// const pg_connection=require('./src/base/pg_connection')
 
-// pgConnection('Select * from students where student_grade =$1',['B'])
+// pg_connection('Select * from students where student_grade =$1',['B'])
 
 
 
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
+const mongo_connection=require('./src/base/mongo_connection')
+mongo_connection()
 
 
-
+const pg_to_mongo=require('./pg_to_mongo')
+pg_to_mongo()
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`)
