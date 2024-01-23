@@ -23,8 +23,6 @@ const mongo_connection=require('./src/base/mongo_connection')
 mongo_connection()
 
 
-const pg_to_mongo=require('./pg_to_mongo')
-pg_to_mongo()
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`)
