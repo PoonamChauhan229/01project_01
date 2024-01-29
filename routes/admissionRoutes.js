@@ -35,4 +35,9 @@ router.get('/getdetailedadmissionlist',(req,res)=>{
     get_detail_admission_list(req,res)
 })
 
+router.get('/getchartdata',(req,res)=>{
+    const get_monthly_earning=require('../src/admission/get_monthly_earning')
+    get_monthly_earning(req,res)
+})
+
 module.exports=router;
