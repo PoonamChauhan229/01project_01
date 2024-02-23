@@ -42,8 +42,9 @@ const process_data=async(callback)=>{
             
         }
     }
-
+    console.log("admission data")
     for(const element of admission_data){
+        console.log("admission data 1")
         const existingAdmission=await db.collection('admission').findOne({admission_id:element.admission_id})
         if(existingAdmission){
             console.log("Admission is Present",element.admission_id)
@@ -52,6 +53,7 @@ const process_data=async(callback)=>{
              const schema=Joi.object({
                 admission_id:Joi.number().required(),                
                 admission_class:Joi.string().required(),
+                admission_sources:Joi.string().required(),
                 admission_date:Joi.date().required(),
                 admission_fees:Joi.number().required(),
                 year:Joi.number().required(),
@@ -60,7 +62,7 @@ const process_data=async(callback)=>{
             })
             console.log(1)
             if(schema.validate(element).error){
-                console.log("Schema Validation Failed")
+                console.log("Schema Validation Failed",element)
                 callback()
             }else{
                  await db.collection('admission').insertOne(element)

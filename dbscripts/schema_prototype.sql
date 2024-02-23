@@ -9,9 +9,11 @@ create table students(
 )
 
 INSERT INTO STUDENTS VALUES
-(1, 'Poonam', 'poonam@gmail.com', '8976456', '12th', 70, 'A'),
-(2, 'Shivam', 'shivam@gmail.com', '9065457', '11th', 65, 'B'),
-(3, 'Sandeep', 'sandeep@gmail.com', '765457', '13th', 75, 'A');
+(2, 'Poonam1', 'poonam@gmail.com', '8976456', '12th', 70, 'A'),
+(3, 'Shivam1', 'shivam@gmail.com', '9065457', '11th', 65, 'B'),
+(6, 'Sandeep1', 'sandeep@gmail.com', '765457', '13th', 75, 'A'),
+(7, 'Sandeep2', 'sandeep@gmail.com', '765457', '13th', 75, 'A')
+
 
 create table attendance(
     attendance_id int primary key,
@@ -25,15 +27,22 @@ select * from students
 
 DROP table students
 
+DROP table admission
+
 
 DELETE from students where student_id=7
 
 CREATE TABLE IF NOT EXISTS admission (
-	admission_id SERIAL PRIMARY KEY,
-	admission_class VARCHAR(100),
-	admission_date DATE,admission_fees INT,
-	student_id INT REFERENCES students(student_id)
-)
+    admission_id SERIAL PRIMARY KEY,
+    admission_class VARCHAR(100),
+    admission_date DATE DEFAULT CURRENT_DATE,
+    admission_fees INT,
+    admission_sources VARCHAR(100),
+    month INT DEFAULT EXTRACT(MONTH FROM CURRENT_DATE),
+    year INT DEFAULT EXTRACT(YEAR FROM CURRENT_DATE),
+    student_id INT REFERENCES students(student_id)
+);
+
 
 select * from admission
 
