@@ -49,3 +49,17 @@ select * from admission
 select * from students s, admission a where s.student_id =a.student_id
 
 select * from admission where student_id=1 
+
+CREATE TABLE batches (
+    year INT DEFAULT EXTRACT(YEAR FROM CURRENT_DATE),
+    batch_id SERIAL PRIMARY KEY,
+    batch_code VARCHAR(10) DEFAULT null,
+    start_date DATE,
+    end_date DATE,
+    student_count INT DEFAULT 0,
+    trainer_name VARCHAR(10),
+    student_fee NUMERIC,
+	course_name VARCHAR(30)
+);
+
+DROP table batches

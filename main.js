@@ -13,6 +13,9 @@ app.use(studentRouter)
 const admissionRouter=require('./routes/admissionRoutes')
 app.use(admissionRouter)
 
+const batchRouter=require('./routes/batchesRoutes')
+app.use(batchRouter)
+
 // const pg_to_mongo_scheduler=require('./pg_to_mongo_scheduler')
 // pg_to_mongo_scheduler()
 // const pg_connection=require('./src/base/pg_connection')
