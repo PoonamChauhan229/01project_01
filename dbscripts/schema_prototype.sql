@@ -58,8 +58,10 @@ CREATE TABLE batches (
     end_date DATE,
     student_count INT DEFAULT 0,
     trainer_name VARCHAR(10),
-    student_fee NUMERIC,
+    student_fee int,
 	course_name VARCHAR(30)
 );
 
 DROP table batches
+
+select * from batches;

@@ -9,5 +9,10 @@ router.post('/addbatch',(req,res)=>{
 
 })
 
+router.get('/viewbatches',(req,res)=>{
+    const viewbatches=require('../src/batches/get_batches')
+    viewbatches(req,res)
+})
+
 
 module.exports=router;

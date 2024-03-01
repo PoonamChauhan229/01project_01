@@ -2,10 +2,10 @@ const pg_connection = require('../base/pg_connection');
 
 const create_batch = async (req, res) => {
     try {
-        const { start_date, end_date, student_count, trainer_name, student_fee } = req.body;
+        const { start_date, end_date, student_count, trainer_name, student_fee,course_name } = req.body;
 
         // Insert the batch without specifying batch_code
-        const result = await pg_connection('INSERT INTO batches (start_date, end_date, student_count, trainer_name, student_fee) VALUES ($1, $2, $3, $4, $5) RETURNING *;', [start_date, end_date, student_count, trainer_name, student_fee]);
+        const result = await pg_connection('INSERT INTO batches (start_date, end_date, student_count, trainer_name, student_fee,course_name) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;', [start_date, end_date, student_count, trainer_name, student_fee,course_name]);
 
         if (result.length > 0) {
             const insertedBatch = result[0];
