@@ -53,14 +53,28 @@ select * from admission where student_id=1
 CREATE TABLE batches (
     year INT DEFAULT EXTRACT(YEAR FROM CURRENT_DATE),
     batch_id SERIAL PRIMARY KEY,
-    batch_code VARCHAR(10) DEFAULT null,
-    start_date DATE,
-    end_date DATE,
-    student_count INT DEFAULT 0,
+    batch_code VARCHAR(10) DEFAULT 0,
+    batch_start_date DATE,
+    batch_end_date DATE,
     trainer_name VARCHAR(10),
-    student_fee int,
-	course_name VARCHAR(30)
+    student_enrollment_fee int,
+	course_name VARCHAR(30),
+	batch_target_size INT DEFAULT 0,
+	batch_actual_size INT DEFAULT 0,
+	coordinator_name VARCHAR(30),
+	batch_location VARCHAR(10),
+	status VARCHAR(20),
+    batch_type VARCHAR(20),
+    installments_applicable VARCHAR(3),
+    batch_session VARCHAR(20),
+    classroom_start_time TIME,
+    classroom_end_time TIME,
+    placement_applicable VARCHAR(3),
+    assessment_applicable VARCHAR(3)
 );
+INSERT INTO batches (batch_code, assessment_applicable, batch_actual_size, batch_end_date, batch_location, batch_session, batch_start_date, batch_target_size, batch_type, classroom_end_time, classroom_start_time, coordinator_name, course_name, installments_applicable, placement_applicable, status, student_enrollment_fee, trainer_name)
+VALUES ('8787878', 'yes', 90, '2024-03-03', 'Online', 'Session 3', '2024-03-03', 90, 'All days', '13:00', '10:00', 'Shruthi', 'FSD', 'Yes', 'yes', 'active', 900, 'Poonam');
+
 
 DROP table batches
 

@@ -3,8 +3,12 @@ const dotenv=require('dotenv').config();
 var session = require('express-session');
 const passport=require('passport')
 
+
 const app = express();
 const port = 8000
+
+const cors=require('cors')
+app.use(cors())
 
 const studentRouter=require('./routes/studentsRoutes')
 app.use(express.json())
