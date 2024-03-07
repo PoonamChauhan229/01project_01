@@ -28,7 +28,7 @@ app.use(batchRouter)
 
 
 const mongo_connection=require('./src/base/mongo_connection');
-const show_dashboard = require('./src/test');
+
 mongo_connection()
 
 
@@ -52,8 +52,8 @@ passport.use(new GoogleStrategy({
   console.log("refreshtoken",refreshToken);
   // return cb(JSON.stringify(profile));
 
-  const show_dashboard=require('./src/test')
-  show_dashboard(null,profile)
+  // const show_dashboard=require('./src/test')
+  // show_dashboard(null,profile)
   return cb(null, profile); 
 }));
 
@@ -89,6 +89,10 @@ app.get("/login/success", (req, res) => {
   }
 });
 
+app.post('/logout', function(req, res) {
+  req.logout(); // Terminate the session
+  res.redirect('http://localhost:3000/login'); // Redirect to the login page
+});
 
 
 app.listen(port, () => {
