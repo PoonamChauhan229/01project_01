@@ -46,8 +46,8 @@ app.use(passport.authenticate('session'));
 
 //googleauth route
 //auth.js
-const authRouter=require('./routes/auth')
-app.use(authRouter)
+const oAuthRouter=require('./routes/oauth')
+app.use(oAuthRouter)
 
 
 app.listen(port, () => {
