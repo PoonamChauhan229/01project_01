@@ -79,3 +79,16 @@ VALUES ('8787878', 'yes', 90, '2024-03-03', 'Online', 'Session 3', '2024-03-03',
 DROP table batches
 
 select * from batches;
+
+CREATE TABLE users(
+	user_id SERIAL PRIMARY KEY,
+	first_name varchar(30),
+	last_name varchar(30),
+	email varchar(30),
+	password varchar(80),
+	role varchar(12)	
+)
+
+DROP TABLE users
+
+SELECT * from users
