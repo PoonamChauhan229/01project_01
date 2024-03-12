@@ -7,6 +7,7 @@ const process_data=async(callback)=>{
     const admission_data=await pg_connection('SELECT * FROM admission')
     const students_data=await pg_connection('SELECT * FROM students')
     const batches_data=await pg_connection('SELECT * FROM batches')
+    const users_data=await pg_connection('SELECT * FROM users')
     // console.log(result)
     const db=await mongo_connection()
     // console.log(db)
@@ -112,6 +113,34 @@ const process_data=async(callback)=>{
             }else{
                  await db.collection('batches').insertOne(element)
                 console.log("Batch data inserted")
+                callback()
+            }
+
+        }
+    }
+
+    for(const element of users_data){
+        console.log("batches_data 1")
+        const existingUser=await db.collection('users').findOne({email:element.email})
+        if(existingUser){
+            console.log("User is Present",element.user_id)
+            callback();
+        }else{
+             const schema=Joi.object({
+                user_id:Joi.number().required(),           
+                first_name:Joi.string().required(),
+                last_name:Joi.string().required(),
+                email:Joi.string().email().required(),
+                password:Joi.string().required(),
+                role:Joi.string().required()
+            })
+            console.log(1)
+            if(schema.validate(element).error){
+                console.log("Schema Validation Failed",schema.validate(element).error)
+                callback()
+            }else{
+                 await db.collection('users').insertOne(element)
+                console.log("User data inserted")
                 callback()
             }
 

@@ -25,6 +25,8 @@ app.use(admissionRouter)
 const batchRouter=require('./routes/batchesRoutes')
 app.use(batchRouter)
 
+const userRouter=require('./routes/userRoutes')
+app.use(userRouter)
 
 const mongo_connection=require('./src/base/mongo_connection');
 
