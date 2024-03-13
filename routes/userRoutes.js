@@ -8,11 +8,24 @@ router.post('/adduser',(req,res)=>{
     register_user(req,res)
 })
 
-// router.delete('/deleteaddmission',(req,res)=>{
-//     const delete_admission=require('../src/admission/delete_admission')
+// Authenticate for login user
+const authenticate = (req, res, next) => {
+    if (req.session && req.session.user) {
+      return next();
+    } else {
+      res.redirect('/login'); 
+    }
+};
 
-//     delete_admission(req,res)
-// })
+router.post('/login/user',(req,res)=>{
+    const loginUser=require('../src/user/loginUser')
+    loginUser(req,res)
+})
+
+router.get('/dashboard',authenticate,(req,res)=>{
+    res.send('Welcome to the dashboard!');
+   // res.redirect('http://localhost:3000/dashboard')
+})
 
 // router.get('/admissions',(req,res)=>{
 //     const get_admission=require('../src/admission/get_admission')

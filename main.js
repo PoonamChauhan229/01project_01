@@ -14,6 +14,12 @@ app.use(cors({
   credentials: true
 }));
 
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set secure to false for development
+}));
 
 const studentRouter=require('./routes/studentsRoutes')
 app.use(express.json())
@@ -32,12 +38,7 @@ const mongo_connection=require('./src/base/mongo_connection');
 
 mongo_connection()
 
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false } // Set secure to false for development
-}));
+
 
 
 //main.js
