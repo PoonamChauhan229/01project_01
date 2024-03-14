@@ -10,34 +10,28 @@ router.post('/adduser',(req,res)=>{
 
 // Authenticate for login user
 const authenticate = (req, res, next) => {
+    console.log("authenticate",req.session)
+    console.log("userauthenticate",req.session.user)
     if (req.session && req.session.user) {
       return next();
     } else {
-      res.redirect('/login'); 
+      res.redirect('/'); 
     }
 };
 
-router.post('/login/user',(req,res)=>{
+router.post('/userlogin',(req,res)=>{
     const loginUser=require('../src/user/loginUser')
     loginUser(req,res)
 })
 
-router.get('/dashboard',authenticate,(req,res)=>{
-    res.send('Welcome to the dashboard!');
-   // res.redirect('http://localhost:3000/dashboard')
+router.get('/dashboard',authenticate,(req,res)=>{    
+    console.log("24",req.session.user)
+    // res.send('Welcome to the dashboard!');
+    // Set CORS headers for the redirect response
+  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.set('Access-Control-Allow-Credentials', 'true');
+   res.redirect('http://localhost:3000/dashboard')
 })
-
-// router.get('/admissions',(req,res)=>{
-//     const get_admission=require('../src/admission/get_admission')
-
-//     get_admission(req,res)
-// })
-
-// router.put('/updateadmission/:id',(req,res)=>{
-//     const updateAdmission=require('../src/admission/update_admission')
-//     updateAdmission(req,res)
-// })
-
 
 
 module.exports=router;

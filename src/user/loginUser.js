@@ -5,6 +5,7 @@ const fetch_user=async(req,res)=>{
     // console.log(user)
     if(user){
         req.session.user = { email:req.body.email  };
+        // console.log(req.session.user)
         // res.send({message:"Logged In Successfully"});
         res.redirect('/dashboard');
     }else{

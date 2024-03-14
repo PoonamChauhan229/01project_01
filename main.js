@@ -9,10 +9,34 @@ const app = express();
 const port = 8000
 
 const cors=require('cors')
-app.use(cors({
-  origin: true,
-  credentials: true
-}));
+// app.use(cors({
+//   origin: true,
+//   credentials: true
+// }));
+
+//app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+// app.use(cors({
+//   origin: 'http://localhost:3000',
+//   credentials: true,
+//   allowedHeaders: ['Content-Type', 'Authorization'] // Specify allowed headers
+// }));
+
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow requests from this origin
+  credentials: true, // Allow credentials (e.g., cookies, authorization headers)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow specified HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow specified request headers
+};
+
+app.use(cors(corsOptions));
+
+// app.use(cors({
+//   origin: '*',
+//   credentials: true,
+// }));
+
+
+
 
 app.use(session({
   secret: 'keyboard cat',
@@ -20,6 +44,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false } // Set secure to false for development
 }));
+
 
 const studentRouter=require('./routes/studentsRoutes')
 app.use(express.json())
